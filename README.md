@@ -1,0 +1,2 @@
+# UShop
+Shopping comparison tool
