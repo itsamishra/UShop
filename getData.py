@@ -22,7 +22,7 @@ def getWalmartData(UPC):
 	walmartURL = "https://www.walmart.com/search/?query=" + str(UPC)
 
 	opener = urllib.request.build_opener()
-	opener.addheaders = [('User-agent', 'Mozilla/5.0')]	# used to spoof Amazon
+	opener.addheaders = [('User-agent', 'Mozilla/5.0')]
 	response = opener.open(walmartURL)
 	pageHTML = response.read()
 
@@ -34,6 +34,21 @@ def getWalmartData(UPC):
 
 	return str(costDollars) + "." + str(costCents)
 
+def geteBayData(UPC):
+	eBayURL = "https://www.ebay.com/sch/" + str(UPC)
 
+	opener = urllib.request.build_opener()
+	opener.addheaders = [('User-agent', 'Mozilla/5.0')]
+	response = opener.open(eBayURL)
+	pageHTML = response.read()
 
-print(getWalmartData("037000509783"))
+	pageSoup = soup(pageHTML, "html.parser")
+	productInfo = pageSoup.findAll("li", {"class":"sresult lvresult clearfix li shic"})[0]
+
+	cost = productInfo.find("span", {"class":"bold"}).text
+	
+	# Formatting cost to be number
+	cost = cost.strip()
+	cost = cost[1:]
+
+	return str(cost)

@@ -8,8 +8,21 @@ def main():
 		amazonPrice = getData.getAmazonData(UPC)
 	except:
 		amazonPrice = getData.getAmazonData(UPC)
+	print("Amazon: $" + amazonPrice)
 
-	print(amazonPrice)
+
+	try:
+		walmartPrice = getData.getWalmartData(UPC)
+	except:
+		walmartPrice = getData.getWalmartData(UPC)
+	print("Walmart: $" + walmartPrice)
+
+
+	try:
+		eBayPrice = getData.geteBayData(UPC)
+	except:
+		eBayPrice = getData.geteBayData(UPC)
+	print("eBay: $" + eBayPrice)
 
 if __name__ == '__main__':
 	main()
