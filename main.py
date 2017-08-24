@@ -1,5 +1,4 @@
 import getData
-import display
 
 def main():
 	UPC = input()

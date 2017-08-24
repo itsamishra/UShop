@@ -50,6 +50,6 @@ def geteBayData(UPC):
 	# Formatting cost to be number
 	cost = cost.strip()
 	cost = cost[1:]
-	cost = cost.strip()
+	cost = cost.splitlines()[0]
 
 	return str(cost)
