@@ -35,7 +35,7 @@ def getWalmartData(UPC):
 	return str(costDollars) + "." + str(costCents)
 
 def geteBayData(UPC):
-	eBayURL = "https://www.ebay.com/sch/" + str(UPC)
+	eBayURL = "https://www.ebay.com/sch/i.html?_nkw=" + str(UPC) + "&_sop=15"
 
 	opener = urllib.request.build_opener()
 	opener.addheaders = [('User-agent', 'Mozilla/5.0')]
@@ -46,9 +46,10 @@ def geteBayData(UPC):
 	productInfo = pageSoup.findAll("li", {"class":"sresult lvresult clearfix li shic"})[0]
 
 	cost = productInfo.find("span", {"class":"bold"}).text
-	
+
 	# Formatting cost to be number
 	cost = cost.strip()
 	cost = cost[1:]
+	cost = cost.strip()
 
 	return str(cost)
